@@ -1,10 +1,14 @@
-const Country = ({name, population, capital}) => {
+import { useState } from "react";
+
+const Country = ({name, population, capital, index, visited}) => {
+
+    const handleClick = () => {
+        
+    }
 
     return (
         <>
-            <li>country name: {name} population: {population} capital: {capital}</li>
-
-
+            <li key={index}>Country name: {name} Population: {population} Capital: {capital} <button id="visit-button" onClick={handleClick}>Visited country?</button></li> 
         </>    
         
     );
@@ -13,4 +17,3 @@ const Country = ({name, population, capital}) => {
 export default Country;
 
 
-{/* <a href=''>map: {map}</a>  */}

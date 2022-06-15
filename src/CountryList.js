@@ -1,16 +1,20 @@
 import Country from "./Country";
 import { useState, useEffect } from "react";
+import usePersistedState from "./usePersistedState";
 
 const CountryList = () => {
 
-    const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = usePersistedState('countries', localStorage.getItem('countries') ?  JSON.parse(localStorage.getItem('countries')) : []);
+
+    const [countriesId, setCountriesId] = usePersistedState('countriesId', 0);
 
     useEffect(() => {
         fetch(`https://restcountries.com/v2/all`)
         .then(response => response.json())
         .then(data => {
             // console.log(data);
-            setCountries(data)
+            setCountries(data);
+            setCountriesId(id => data.length);
         }
         )
     }, []);       
